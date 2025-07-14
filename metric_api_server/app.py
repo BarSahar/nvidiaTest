@@ -19,15 +19,11 @@ def setup_logging():
     )
 
 #add master function to auth?
-#add master route "telemetry" https://stackoverflow.com/questions/18967441/add-a-prefix-to-all-flask-routes
 # add logs and metrics
-# add dump file
 # should I consider faults in the data? some metrics unavailable at times and how to tolerate it?
 
 # the dictionary because of switch array. indeces because the List Metrics. both are extremely fast so I'll go with object because it's the most correct? or 2D array because it's less processing from the data gen
-# dictionary of deque of objects
-# assuming metrics are constant. same goes for switches
-# look into one command to orchestrate both servers
+# assuming metrics are constant. no faults
 
 # assuming metrics are changing every second
 # assuming "freshness" is a 10 second window
