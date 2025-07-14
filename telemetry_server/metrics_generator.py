@@ -8,8 +8,8 @@ import logging
 
 class MetricsDataGenerator:
     logger = logging.getLogger(__name__)
-    _metric_headers = ["SwitchId", "BandwidthConsumption", "Latency", "CpuUsage", "FailedRequests", "SuccessfulRequests"]
-    _num_of_switches = 5
+    METRIC_HEADERS = ["SwitchId", "BandwidthConsumption", "Latency", "CpuUsage", "FailedRequests", "SuccessfulRequests"]
+    NUM_OF_SWITCHES = 5
 
     #stateless functions to initialize data and step it over time
     #assuming metrics units are known to both parties (Tal approves)
@@ -44,10 +44,10 @@ class MetricsDataGenerator:
         
     def _init_metrics(self):
         try: 
-            self._current_metrics_data.append(self._metric_headers)
+            self._current_metrics_data.append(self.METRIC_HEADERS)
             self.logger.info("initializing metrics")
-            #switch_ids = [str(uuid.uuid4()) for _ in range(self._num_of_switches)]
-            switch_ids = [i for i in range(self._num_of_switches)]
+            switch_ids = [str(uuid.uuid4()) for _ in range(self.NUM_OF_SWITCHES)]
+            # switch_ids = [i for i in range(self._num_of_switches)] # used this for debugging, much easier to paste digits into console than uuid
             with self.__lock:
                 for switch_id in switch_ids:
                     self._current_metrics_data.append([switch_id] + [metric_func.init_value() for metric_func in self._metric_rand_functions])
