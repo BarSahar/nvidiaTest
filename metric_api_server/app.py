@@ -18,16 +18,6 @@ def setup_logging():
         ]
     )
 
-#add master function to auth?
-# add logs and metrics
-# should I consider faults in the data? some metrics unavailable at times and how to tolerate it?
-
-# the dictionary because of switch array. indeces because the List Metrics. both are extremely fast so I'll go with object because it's the most correct? or 2D array because it's less processing from the data gen
-# assuming metrics are constant. no faults
-
-# assuming metrics are changing every second
-# assuming "freshness" is a 10 second window
-
 @app.route("/")
 def smoke_test():
     return ""
