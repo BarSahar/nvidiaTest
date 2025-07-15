@@ -20,7 +20,8 @@ class MetricsCacheManager:
         if metric_name not in self.metric_names:
             self.logger.warning(f"no metric by that name {metric_name}")
             raise ValueError(f"no metric by that name {metric_name}")
-                 
+        
+        metric_index = self.metric_names.index(metric_name) 
         if self._is_cache_stale():
             #acquire lock to refresh
             if self._check_and_refresh_cache() is False:
@@ -30,7 +31,7 @@ class MetricsCacheManager:
             if switch_id not in self._cache_dict:
                 self.logger.warning(f"no switch by that id {switch_id}")
                 raise ValueError(f"no switch by that id {switch_id}")
-            return self._cache_dict[switch_id] #since the values are strings no need to make a thread-safe copy to return
+            return self._cache_dict[switch_id][metric_index] #since the values are strings no need to make a thread-safe copy to return
 
             
             
